@@ -143,20 +143,42 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
+        .video-background {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="1" fill="%23000" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            transition: filter 0.5s ease;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+            transition: background 0.5s ease;
+        }
+
+        .video-background.blurred {
+            filter: blur(8px);
+        }
+
+        .video-overlay.darkened {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .hero::before {
+            display: none;
         }
 
         .hero-container {
@@ -172,16 +194,36 @@
         .hero-content {
             z-index: 2;
             position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] .hero-content {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .hero-embed {
             min-height: 400px;
             position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] .hero-embed {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         #embed-container {
             width: 100%;
-            height: 500px;
+            height: 400px;
             position: relative;
         }
 
@@ -217,7 +259,7 @@
 
         .custom-embed {
             width: 100%;
-            height: 130%;
+            height: 100%;
         }
 
         .hero h1 {
@@ -627,6 +669,15 @@
     </style>
 </head>
 <body>
+    <!-- Video Background -->
+    <video id="bg-video" class="video-background" autoplay muted loop>
+        <source src="your-video-file.mp4" type="video/mp4">
+        <source src="your-video-file.webm" type="video/webm">
+        <!-- Fallback for browsers that don't support video -->
+        Your browser does not support the video tag.
+    </video>
+    <div id="video-overlay" class="video-overlay"></div>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -664,8 +715,9 @@
                 <div class="hero-embed">
                     <div id="embed-container">
                         <div class="embed-placeholder">
-                            <small><script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
-<spline-viewer url="https://prod.spline.design/vJN0RAth8h7GBbVF/scene.splinecode"></spline-viewer></small>
+                            <div class="icon">🎨</div>
+                            <p>Custom HTML Embed Area</p>
+                            <small>Replace this with your custom HTML code</small>
                         </div>
                     </div>
                 </div>
@@ -842,6 +894,26 @@
     </footer>
 
     <script>
+        // Video Background Blur Effect
+        const bgVideo = document.getElementById('bg-video');
+        const videoOverlay = document.getElementById('video-overlay');
+        const heroSection = document.getElementById('home');
+        
+        function handleVideoBlur() {
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition > heroBottom * 0.3) {
+                bgVideo.classList.add('blurred');
+                videoOverlay.classList.add('darkened');
+            } else {
+                bgVideo.classList.remove('blurred');
+                videoOverlay.classList.remove('darkened');
+            }
+        }
+
+        window.addEventListener('scroll', handleVideoBlur);
+
         // Theme Toggle
         function toggleTheme() {
             const html = document.documentElement;
