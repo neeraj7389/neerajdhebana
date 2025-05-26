@@ -5,17 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - Portfolio</title>
     <style>
-        .hero-bg-video {
-    position: absolute;
+   .fixed-bg-video {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    opacity: 0.3; /* Adjust for readability, 0.3–0.6 is typical */
-    pointer-events: none; /* So clicks go through the video */
+    min-width: 100vw;
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
+.fixed-bg-video video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.3; /* Adjust as you like */
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 2;
+}
+.main-content {
+    position: relative;
+    z-index: 1;
+    margin-top: 90px; /* Adjust to your navbar height */
+}    
 .hero {
     position: relative;
     overflow: hidden;
@@ -691,8 +716,6 @@
     <!-- Hero Section -->
    <main class="main-content">
     <section id="home" class="hero">
-        <video class="hero-bg-video" autoplay muted loop playsinline>
-  <source src="" type="video/mp4">
   <!-- Optionally add a webm/ogg fallback -->
   Your browser does not support the video tag.
 </video>
