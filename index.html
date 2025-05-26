@@ -375,9 +375,6 @@ nav {
             margin-bottom: 4rem;
             font-size: 1.2rem;
         }
-        #home {
-  filter: none;
-}
         #about {
   transition: filter 0.3s ease;
 }
@@ -919,23 +916,6 @@ nav {
     </main>
 
     <script>
-        window.addEventListener('scroll', function() {
-  const aboutSection = document.getElementById('about');
-  const rect = aboutSection.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-
-  // When the top of "about" enters the viewport
-  if (rect.top < windowHeight && rect.bottom > 0) {
-    // How much of the "about" section is visible (0 to 1)
-    let visiblePercent = Math.min(1, Math.max(0, (windowHeight - rect.top) / (rect.height + windowHeight)));
-
-    // Increase blur as more of "about" appears (max 10px blur, adjust as desired)
-    aboutSection.style.filter = `blur(${visiblePercent * 10}px)`;
-  } else {
-    // Reset blur outside viewport
-    aboutSection.style.filter = 'blur(0px)';
-  }
-});
         // Theme Toggle
         function toggleTheme() {
             const html = document.documentElement;
