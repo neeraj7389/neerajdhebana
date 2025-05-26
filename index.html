@@ -48,6 +48,8 @@
             --main-title-color: #e5e7eb;
             --text-primary: #f9fafb;
             --text-secondary: #d1d5db;
+             --hero-btn-bg: #23272a;
+    --hero-btn-text: #f9fafb;
             --bg-primary: #111827;
             --bg-secondary: #1f2937;
             --bg-card: #374151;
@@ -288,11 +290,11 @@
             font-size: 1rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            box-shadow: var(--shadow);
-        }
+     .btn-primary {
+    background: var(--hero-btn-bg, #23272a); /* fallback: dark gray */
+    color: var(--hero-btn-text, #f9fafb);    /* fallback: light text */
+    box-shadow: var(--shadow);
+}
 
         .btn-primary:hover {
             transform: translateY(-2px);
