@@ -74,19 +74,34 @@
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: transparent !important;
+    backdrop-filter: blur(14px) brightness(1.1);
+    border-bottom: none;
+    z-index: 1000;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.08); /* Subtle shadow for depth */
+    transition: all 0.3s ease;
+}
 
-        [data-theme="dark"] nav {
-            background: rgba(17, 24, 39, 0.95);
-        }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.08); /* Very light glass, adjust alpha as needed */
+    border-radius: 18px;
+    box-shadow: 0 1.5px 8px 0 rgba(0,0,0,0.10);
+    backdrop-filter: blur(24px) saturate(110%);
+}
+
+[data-theme="dark"] .nav-container {
+    background: rgba(22, 28, 34, 0.18);
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.18);
+}
 
         .nav-container {
             display: flex;
