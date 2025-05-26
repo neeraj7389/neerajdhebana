@@ -45,6 +45,7 @@
         }
 
         [data-theme="dark"] {
+            --main-title-color: #e5e7eb;
             --text-primary: #f9fafb;
             --text-secondary: #d1d5db;
             --bg-primary: #111827;
@@ -240,15 +241,16 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--main-title-color, #e5e7eb); /* fallback: light gray */
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    animation: fadeInUp 1s ease 0.2s both;
+}
 
         .hero .subtitle {
             font-size: 1.5rem;
