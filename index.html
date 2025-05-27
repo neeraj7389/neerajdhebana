@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neeraj Dhebana - Portfolio</title>
     <style>
+        .landscape-bg-video {
+    display: block;
+}
+.portrait-bg-video {
+    display: none;
+}
+@media (orientation: portrait) {
+    .landscape-bg-video {
+        display: none !important;
+    }
+    .portrait-bg-video {
+        display: block !important;
+    }
+}
+@media (orientation: landscape) {
+    .landscape-bg-video {
+        display: block !important;
+    }
+    .portrait-bg-video {
+        display: none !important;
+    }
+}
         body {
   font-family: 'Inter', 'Montserrat', Arial, sans-serif;
 }
@@ -725,11 +747,18 @@ nav {
 </head>
 <body>
     <!-- Fixed Background Video -->
-    <div class="fixed-bg-video">
-        <video autoplay muted loop playsinline>
-            <source src="Cool black Background - 1080.mp4" type="video/mp4">
-        </video>
-    </div>
+    <!-- Fixed Background Video for Desktop/Landscape -->
+<div class="fixed-bg-video landscape-bg-video">
+    <video autoplay muted loop playsinline>
+        <source src="Cool black Background - 1080.mp4" type="video/mp4">
+    </video>
+</div>
+<!-- Fixed Background Video for Portrait/Vertical Devices -->
+<div class="fixed-bg-video portrait-bg-video">
+    <video autoplay muted loop playsinline>
+        <source src="YOUR_VERTICAL_VIDEO.mp4" type="video/mp4">
+    </video>
+</div>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
