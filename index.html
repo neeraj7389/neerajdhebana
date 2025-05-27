@@ -82,6 +82,11 @@ h1, h2, h3, .logo {
     object-fit: cover;
     opacity: 0.3; /* Adjust as you like */
 }
+  @media (orientation: portrait) {
+  .fixed-bg-video video {
+    filter: none !important;
+  }
+}      
 nav {
     position: fixed;
     top: 0;
