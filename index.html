@@ -15,9 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neeraj Dhebana - Portfolio</title>
     <style>
-        #projects {
-  display: none !important;
-}
         .landscape-bg-video {
     display: block;
 }
@@ -506,83 +503,6 @@ nav {
             border-color: var(--primary-color);
         }
 
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .project-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tag {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: var(--secondary-color);
-        }
-
         /* Contact Section */
         .contact {
             background: var(--bg-secondary);
@@ -1019,7 +939,6 @@ nav {
                         I bring ideas to life through code and creativity.
                     </p>
                     <div class="cta-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
@@ -1068,58 +987,6 @@ nav {
                         <span class="skill-tag">CSS</span>
                         <span class="skill-tag">Blender</span>
                         <span class="skill-tag">After Effects</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title fade-in">Featured Projects</h2>
-            <p class="section-subtitle fade-in">A showcase of my recent work and achievements</p>
-            
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <div class="project-image">🚀</div>
-                    <div class="project-content">
-                        <h3>E-Commerce Platform</h3>
-                        <p>A full-stack e-commerce solution with React, Node.js, and Stripe integration. Features include user authentication, product management, and real-time inventory tracking.</p>
-                        <div class="project-tags">
-
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">Live Demo</a>
-                            <a href="#" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-in">
-                    <div class="project-image">📱</div>
-                    <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p>
-                        <div class="project-tags">
-
-                        </div>
-                        <div class="project-links">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-in">
-                    <div class="project-image">📊</div>
-                    <div class="project-content">
-                        <h3>Analytics Dashboard</h3>
-                        <p>A comprehensive analytics dashboard with interactive charts, real-time data visualization, and customizable reporting features.</p>
-                        <div class="project-tags">
-
-                        </div>
-                        <div class="project-links">
-
-                        </div>
                     </div>
                 </div>
             </div>
