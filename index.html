@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script>
+// Place this as the FIRST thing in <head>
+(function() {
+  let theme = localStorage.getItem('theme');
+  if (!theme) {
+    // Check system preference if not set
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1197,15 +1208,7 @@ nav {
     </main>
 
     <script>
-  // Place this as the FIRST thing in <head>
-  (function() {
-    let theme = localStorage.getItem('theme');
-    if (!theme) {
-      // Check system preference if not set
-      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', theme);
-  })();
+
          // Sidebar open/close
     function openSidebar() {
         document.getElementById('sidebar').classList.add('open');
