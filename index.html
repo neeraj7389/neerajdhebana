@@ -748,6 +748,107 @@ nav {
                 grid-template-columns: 1fr;
             }
         }
+        .menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1101;
+    gap: 5px;
+}
+.menu-btn span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+@media (max-width: 900px) {
+    .desktop-nav {
+        display: none !important;
+    }
+    .menu-btn {
+        display: flex;
+    }
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: var(--bg-primary);
+    box-shadow: -2px 0 16px rgba(0,0,0,0.08);
+    z-index: 1102;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    transition: right 0.3s cubic-bezier(.77,0,.18,1);
+}
+.sidebar.open {
+    right: 0;
+}
+.sidebar .close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-primary);
+    align-self: flex-end;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar-links .nav-link {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.sidebar-links .nav-link.active,
+.sidebar-links .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.sidebar-theme-toggle {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(44,44,44,0.20);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1101;
+    transition: opacity 0.3s;
+}
+.sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
     </style>
 </head>
 <body>
@@ -764,21 +865,40 @@ nav {
         <source src="fffff.mp4" type="video/mp4">
     </video>
 </div>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <span id="theme-icon">🌙</span>
-            </button>
-        </div>
-    </nav>
+  <!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">Portfolio</div>
+        <ul class="nav-links desktop-nav">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <!-- Menu Button (Hamburger) -->
+        <button class="menu-btn" onclick="openSidebar()" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Sidebar Navigation Drawer -->
+<aside id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="closeSidebar()" aria-label="Close menu">&times;</button>
+    <ul class="sidebar-links">
+        <li><a href="#home" class="nav-link" onclick="closeSidebar()">Home</a></li>
+        <li><a href="#about" class="nav-link" onclick="closeSidebar()">About</a></li>
+        <li><a href="#projects" class="nav-link" onclick="closeSidebar()">Projects</a></li>
+        <li><a href="#contact" class="nav-link" onclick="closeSidebar()">Contact</a></li>
+    </ul>
+    <button class="theme-toggle sidebar-theme-toggle" onclick="toggleTheme()">
+        <span id="sidebar-theme-icon">🌙</span>
+    </button>
+</aside>
+<!-- Overlay for sidebar -->
+<div id="sidebar-overlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
 
     <!-- Hero Section -->
    <main class="main-content">
@@ -983,19 +1103,44 @@ nav {
     </main>
 
     <script>
+         // Sidebar open/close
+    function openSidebar() {
+        document.getElementById('sidebar').classList.add('open');
+        document.getElementById('sidebar-overlay').classList.add('open');
+        // Sync theme icon in sidebar
+        syncThemeIcon();
+    }
+    function closeSidebar() {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebar-overlay').classList.remove('open');
+    }
         // Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.removeAttribute('data-theme');
-                themeIcon.textContent = '🌙';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-            }
+          function toggleTheme() {
+        const html = document.documentElement;
+        const bodyThemeIcon = document.getElementById('theme-icon');
+        const sidebarThemeIcon = document.getElementById('sidebar-theme-icon');
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            if(bodyThemeIcon) bodyThemeIcon.textContent = '🌙';
+            if(sidebarThemeIcon) sidebarThemeIcon.textContent = '🌙';
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            if(bodyThemeIcon) bodyThemeIcon.textContent = '☀️';
+            if(sidebarThemeIcon) sidebarThemeIcon.textContent = '☀️';
         }
+    }
+    // Sync theme icon both places
+    function syncThemeIcon() {
+        const html = document.documentElement;
+        const bodyThemeIcon = document.getElementById('theme-icon');
+        const sidebarThemeIcon = document.getElementById('sidebar-theme-icon');
+        const isDark = html.getAttribute('data-theme') === 'dark';
+        if(bodyThemeIcon) bodyThemeIcon.textContent = isDark ? '☀️' : '🌙';
+        if(sidebarThemeIcon) sidebarThemeIcon.textContent = isDark ? '☀️' : '🌙';
+    }
+    // Optional: sync icons on page load
+    document.addEventListener('DOMContentLoaded', syncThemeIcon);
+
 
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
