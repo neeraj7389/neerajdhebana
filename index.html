@@ -1217,40 +1217,5 @@ document.addEventListener('DOMContentLoaded', function() {
   morphThemeIcon('theme-morph-icon', isDark, false);
   morphThemeIcon('theme-morph-sidebar-icon', isDark, true);
 });
-    </script>
-    <!-- EmailJS SDK -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function() {
-    emailjs.init("6CKF-oFnnhCffu4As"); // Replace with your EmailJS User ID (public key)
-  })();
-
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    emailjs.sendForm('service_092j7mm', 'template_zo0o3mj', this)
-      .then(function() {
-        alert('Message sent successfully!');
-      }, function(error) {
-        alert('Failed to send message: ' + JSON.stringify(error));
-      });
-  });
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  // Check message size before sending
-  var message = document.getElementById('message').value;
-  if (message.length > 2000) {
-    alert('Your message is too long. Please keep it under 2000 characters.');
-    return;
-  }
-
-  emailjs.sendForm(service_092j7mm', 'template_zo0o3mj', this)
-    .then(function() {
-      alert('Message sent successfully!');
-    }, function(error) {
-      alert('Failed to send message: ' + JSON.stringify(error));
-    });
-});
-</script>
 </body>
 </html>
