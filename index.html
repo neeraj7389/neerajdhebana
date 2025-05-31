@@ -849,6 +849,20 @@ nav {
     opacity: 1;
     visibility: visible;
 }
+         /* Hide by default */
+.desktop-theme-toggle {
+  display: none;
+}
+
+/* Show only in landscape and desktop */
+@media (orientation: landscape) and (min-width: 900px) {
+  .desktop-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+  }
+}
     </style>
 </head>
 <body>
@@ -875,15 +889,15 @@ nav {
             <li><a href="#projects" class="nav-link">Projects</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <button class="theme-toggle desktop-theme-toggle" onclick="toggleTheme()">
-  <span id="desktop-theme-icon">🌙</span>
-</button>
         <!-- Menu Button (Hamburger) -->
         <button class="menu-btn" onclick="openSidebar()" aria-label="Open menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        <button class="theme-toggle desktop-theme-toggle" onclick="toggleTheme()">
+  <span id="desktop-theme-icon">🌙</span>
+</button>
     </div>
 </nav>
 
@@ -1106,20 +1120,6 @@ nav {
     </main>
 
     <script>
-        /* Hide by default */
-.desktop-theme-toggle {
-  display: none;
-}
-
-/* Show only in landscape and desktop */
-@media (orientation: landscape) and (min-width: 900px) {
-  .desktop-theme-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 1rem;
-  }
-}
          // Sidebar open/close
     function openSidebar() {
         document.getElementById('sidebar').classList.add('open');
