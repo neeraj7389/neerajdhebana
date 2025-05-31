@@ -863,6 +863,16 @@ nav {
     margin-left: 1rem;
   }
 }
+        .theme-toggle svg {
+  stroke: var(--text-primary);
+  fill: none;
+  width: 24px;
+  height: 24px;
+  transition: stroke 0.3s;
+}
+[data-theme="dark"] .theme-toggle svg {
+  stroke: var(--text-secondary);
+}
     </style>
 </head>
 <body>
@@ -895,12 +905,11 @@ nav {
             <span></span>
             <span></span>
         </button>
-        <button class="theme-toggle desktop-theme-toggle" onclick="toggleTheme()">
-  <!-- Example SVG: Sun/Moon combo (outline only, colourless, unique look) -->
-<svg id="theme-icon" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
-  <circle cx="12" cy="12" r="5" />
-  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-</svg>
+        <button class="theme-toggle desktop-theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+  <svg id="desktop-theme-icon" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
 </button>
     </div>
 </nav>
@@ -914,13 +923,12 @@ nav {
         <li><a href="#projects" class="nav-link" onclick="closeSidebar()">Projects</a></li>
         <li><a href="#contact" class="nav-link" onclick="closeSidebar()">Contact</a></li>
     </ul>
-    <button class="theme-toggle sidebar-theme-toggle" onclick="toggleTheme()">
-        <!-- Example SVG: Sun/Moon combo (outline only, colourless, unique look) -->
-<svg id="theme-icon" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
-  <circle cx="12" cy="12" r="5" />
-  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-</svg>
-    </button>
+    <button class="theme-toggle sidebar-theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+  <svg id="sidebar-theme-icon" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+</button>
 </aside>
 <!-- Overlay for sidebar -->
 <div id="sidebar-overlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
