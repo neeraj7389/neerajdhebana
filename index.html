@@ -95,11 +95,14 @@ h1, h2, h3, .logo {
         [data-theme="light"] .fixed-bg-video video {
     filter: invert(1);
 }
-  @media (orientation: portrait) {
-  .fixed-bg-video video {
-    filter: none !important;
+ @media (orientation: portrait) {
+  [data-theme="light"] .fixed-bg-video video {
+    filter: invert(1);
   }
-}      
+  [data-theme="dark"] .fixed-bg-video video {
+    filter: none;
+  }
+}
 nav {
     position: fixed;
     top: 0;
